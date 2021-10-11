@@ -1,25 +1,16 @@
 package ir.maktab.ticket.util;
 
-import ir.maktab.ticket.repository.AirLineRepository;
-import ir.maktab.ticket.repository.FlightRepository;
-import ir.maktab.ticket.repository.PassengerRepository;
-import ir.maktab.ticket.repository.TicketRepository;
-import ir.maktab.ticket.repository.impl.AirLineRepositoryImpl;
-import ir.maktab.ticket.repository.impl.FlightRepositoryImpl;
-import ir.maktab.ticket.repository.impl.PassengerRepositoryImpl;
-import ir.maktab.ticket.repository.impl.TicketRepositoryImpl;
-import ir.maktab.ticket.service.AirLineService;
-import ir.maktab.ticket.service.FlightService;
-import ir.maktab.ticket.service.PassengerService;
-import ir.maktab.ticket.service.TicketService;
-import ir.maktab.ticket.service.impl.AirLineServiceImpl;
-import ir.maktab.ticket.service.impl.FlightServiceImpl;
-import ir.maktab.ticket.service.impl.PassnegerServiceImpl;
-import ir.maktab.ticket.service.impl.TicketServiceImpl;
+import ir.maktab.ticket.repository.*;
+import ir.maktab.ticket.repository.impl.*;
+import ir.maktab.ticket.service.*;
+import ir.maktab.ticket.service.impl.*;
 
 import javax.persistence.EntityManager;
 
 public class ApplicationContext {
+    private static final AdminRepository ADMIN_REPOSITORY;
+    private static final AdminService ADMIN_SERVICE;
+
     private static final AirLineRepository AIR_LINE_REPOSITORY;
     private static final AirLineService AIR_LINE_SERVICE;
 
@@ -32,8 +23,14 @@ public class ApplicationContext {
     private static final TicketRepository TICKET_REPOSITORY;
     private static final TicketService TICKET_SERVICE;
 
+    private static final UserRepository USER_REPOSITORY;
+    private static final UserService USER_SERVICE;
+
     static {
         EntityManager entityManager = HibernateUtil.getEntityManagerFactory().createEntityManager();
+
+        ADMIN_REPOSITORY = new AdminRepositoryImpl(entityManager);
+        ADMIN_SERVICE = new AdminServiceImpl(ADMIN_REPOSITORY);
 
         AIR_LINE_REPOSITORY = new AirLineRepositoryImpl(entityManager);
         AIR_LINE_SERVICE = new AirLineServiceImpl(AIR_LINE_REPOSITORY);
@@ -46,6 +43,13 @@ public class ApplicationContext {
 
         TICKET_REPOSITORY = new TicketRepositoryImpl(entityManager);
         TICKET_SERVICE = new TicketServiceImpl(TICKET_REPOSITORY);
+
+        USER_REPOSITORY = new UserRepositoryImpl(entityManager);
+        USER_SERVICE = new UserServiceImpl(USER_REPOSITORY);
+    }
+
+    public static AdminService getAdminService() {
+        return ADMIN_SERVICE;
     }
 
     public static AirLineService getAirLineService() {
@@ -62,5 +66,9 @@ public class ApplicationContext {
 
     public static TicketService getTicketService() {
         return TICKET_SERVICE;
+    }
+
+    public static UserService getUserService() {
+        return USER_SERVICE;
     }
 }

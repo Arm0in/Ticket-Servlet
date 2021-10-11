@@ -18,11 +18,4 @@ public class AirLineRepositoryImpl extends BaseRepositoryImpl<AirLine, Long> imp
     public Class<AirLine> getEntityClass() {
         return AirLine.class;
     }
-
-    @Override
-    public AirLine getAirLineByUsername(String username) {
-        return entityManager.createQuery(
-                "FROM AirLine a WHERE a.username = :username", AirLine.class
-        ).setParameter("username", username).getSingleResult();
-    }
 }

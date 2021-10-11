@@ -17,10 +17,5 @@ public class PassengerRepositoryImpl extends BaseRepositoryImpl<Passenger, Long>
         return Passenger.class;
     }
 
-    @Override
-    public Passenger getPassengerByUsername(String username) {
-        return entityManager.createQuery(
-                "FROM Passenger p WHERE p.username = :username", Passenger.class
-        ).setParameter("username", username).getSingleResult();
-    }
+
 }
