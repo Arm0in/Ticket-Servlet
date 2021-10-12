@@ -20,6 +20,11 @@ public class ApplicationContext {
     private static final PassengerRepository PASSENGER_REPOSITORY;
     private static final PassengerService PASSENGER_SERVICE;
 
+    private static final PurchaseService PURCHASE_SERVICE;
+
+    private static final SaleRepository SALE_REPOSITORY;
+    private static final SaleService SALE_SERVICE;
+
     private static final TicketRepository TICKET_REPOSITORY;
     private static final TicketService TICKET_SERVICE;
 
@@ -39,7 +44,12 @@ public class ApplicationContext {
         FLIGHT_SERVICE = new FlightServiceImpl(FLIGHT_REPOSITORY);
 
         PASSENGER_REPOSITORY = new PassengerRepositoryImpl(entityManager);
-        PASSENGER_SERVICE = new PassnegerServiceImpl(PASSENGER_REPOSITORY);
+        PASSENGER_SERVICE = new PassengerServiceImpl(PASSENGER_REPOSITORY);
+
+        PURCHASE_SERVICE = new PurchaseServiceImpl(PASSENGER_SERVICE, FLIGHT_SERVICE);
+
+        SALE_REPOSITORY = new SaleRepositoryImpl(entityManager);
+        SALE_SERVICE = new SaleServiceImpl(SALE_REPOSITORY);
 
         TICKET_REPOSITORY = new TicketRepositoryImpl(entityManager);
         TICKET_SERVICE = new TicketServiceImpl(TICKET_REPOSITORY);
@@ -62,6 +72,14 @@ public class ApplicationContext {
 
     public static PassengerService getPassengerService() {
         return PASSENGER_SERVICE;
+    }
+
+    public static PurchaseService getPurchaseService() {
+        return PURCHASE_SERVICE;
+    }
+
+    public static SaleService getSaleService() {
+        return SALE_SERVICE;
     }
 
     public static TicketService getTicketService() {

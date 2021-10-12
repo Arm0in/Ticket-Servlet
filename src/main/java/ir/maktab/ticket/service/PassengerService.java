@@ -4,5 +4,5 @@ import ir.maktab.ticket.base.service.BaseService;
 import ir.maktab.ticket.domain.Passenger;
 
 public interface PassengerService extends BaseService<Passenger, Long> {
-
+    void addToBalance(Passenger passenger, Double amount);
 }

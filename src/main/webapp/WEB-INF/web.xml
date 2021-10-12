@@ -4,4 +4,47 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>AuthServlet</servlet-name>
+    <servlet-class>ir.maktab.ticket.servlet.AuthServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CreateServlet</servlet-name>
+    <servlet-class>ir.maktab.ticket.servlet.CreateServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>PurchaseServlet</servlet-name>
+    <servlet-class>ir.maktab.ticket.servlet.PurchaseServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddBalanceServlet</servlet-name>
+    <servlet-class>ir.maktab.ticket.servlet.AddBalanceServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddDiscountServlet</servlet-name>
+    <servlet-class>ir.maktab.ticket.servlet.AddDiscountServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AuthServlet</servlet-name>
+    <url-pattern>/authenticate</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreateServlet</servlet-name>
+    <url-pattern>/create</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PurchaseServlet</servlet-name>
+    <url-pattern>/purchase</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddBalanceServlet</servlet-name>
+    <url-pattern>/addbalance</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddDiscountServlet</servlet-name>
+    <url-pattern>/adddiscount</url-pattern>
+    <url-pattern>/adddiscount</url-pattern>
+  </servlet-mapping>
 </web-app>

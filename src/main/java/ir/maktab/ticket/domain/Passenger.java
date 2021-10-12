@@ -22,4 +22,14 @@ public class Passenger extends User {
     private LocalDate birthDate;
     private Double balance;
 
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", birthDate=" + birthDate +
+                ", balance=" + balance +
+                '}';
+    }
 }
