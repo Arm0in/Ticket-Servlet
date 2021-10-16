@@ -1,5 +1,6 @@
 package ir.maktab.ticket.servlet;
 
+import ir.maktab.ticket.domain.Flight;
 import ir.maktab.ticket.domain.Passenger;
 import ir.maktab.ticket.domain.enumeration.SeatType;
 import ir.maktab.ticket.util.ApplicationContext;
@@ -17,8 +18,10 @@ public class PurchaseServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long flightId = Long.parseLong(req.getParameter("flight"));
         try {
+            Flight chosenFlight = ApplicationContext.getFlightService().findById(flightId);
+            System.out.println("CHosen flight: " + chosenFlight);
             ApplicationContext.getPurchaseService().purchase((Passenger) SecurityContext.getCurrentUser(),
-                    ApplicationContext.getFlightService().findById(flightId),
+                    chosenFlight,
                     SeatType.ECONOMY);
             PrintWriter out = resp.getWriter();
             out.println("success!");

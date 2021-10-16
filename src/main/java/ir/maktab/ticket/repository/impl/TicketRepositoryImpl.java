@@ -22,6 +22,6 @@ public class TicketRepositoryImpl extends BaseRepositoryImpl<Ticket, Long> imple
     public Long countPassengerTickets(Passenger passenger) {
         return entityManager.createQuery(
                 "SELECT COUNT(passenger) FROM Ticket WHERE passenger=:passengerId"
-                , Long.class).setParameter("passengerId", passenger.getId()).getSingleResult();
+                , Long.class).setParameter("passengerId", passenger).getSingleResult();
     }
 }

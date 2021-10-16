@@ -45,6 +45,6 @@
   <servlet-mapping>
     <servlet-name>AddDiscountServlet</servlet-name>
     <url-pattern>/adddiscount</url-pattern>
-    <url-pattern>/adddiscount</url-pattern>
+
   </servlet-mapping>
 </web-app>

@@ -22,6 +22,6 @@ public class SaleRepositoryImpl extends BaseRepositoryImpl<Sale, Long> implement
     public Sale findFlightSale(Flight flight) {
         return entityManager.createQuery(
                 "FROM Sale s WHERE s.flight = :flightId", Sale.class
-        ).setParameter("flightId", flight.getId()).getSingleResult();
+        ).setParameter("flightId", flight).getSingleResult();
     }
 }
